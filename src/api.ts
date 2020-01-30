@@ -1,8 +1,9 @@
 // R.A.M Central Logging API
 // A TypeScript based caching API for R.A.M, the ETS2 self-driving vehicle.
 
-import { Router }   from "./modules/router";
-import { State }    from './interfaces/state';
+import { Router } from "./modules/router";
+import { State }  from './interfaces/state';
+import { Data }   from './modules/data';  
 import Winston from 'winston';
 
 const logger = Winston.createLogger({
@@ -21,4 +22,5 @@ const logger = Winston.createLogger({
 
 logger.info("Initalizing...")
 
-const router = new Router(logger);
+let data = new Data(logger);
+const router = new Router(logger, data);
