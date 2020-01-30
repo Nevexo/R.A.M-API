@@ -100,7 +100,7 @@ Data:
     "ram_parameters": {
         "vehicle": {"data": "Car", "last_changed": "2020-01-30T21:52:16+0000"},
         "task": {"data": "Pilot", "last_changed": "2020-01-30T21:52:16+0000"},
-        "mode": {"data": "Piloting", "last_changed": "2020-01-30T21:52:16+0000"}",
+        "mode": {"data": "Piloting", "last_changed": "2020-01-30T21:52:16+0000"},
         "control_mode": {"data": "user_control", "last_changed": "2020-01-30T21:52:16+0000"},
         "path": {"data": "Brussels/Garage", "last_changed": "2020-01-30T21:52:16+0000"}
     },
