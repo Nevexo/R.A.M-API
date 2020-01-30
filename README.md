@@ -102,7 +102,7 @@ Data:
         "task": {"data": "Pilot", "last_changed": "2020-01-30T21:52:16+0000"},
         "mode": {"data": "Piloting", "last_changed": "2020-01-30T21:52:16+0000"},
         "control_mode": {"data": "user_control", "last_changed": "2020-01-30T21:52:16+0000"},
-        "path": {"data": "Brussels/Garage", "last_changed": "2020-01-30T21:52:16+0000"}
+        "path": {"data": {"city": "Brussels", "company": "Garage"}, "last_changed": "2020-01-30T21:52:16+0000"}
     },
     "last_uplink_time": "2020-01-30T21:52:16+0000"
 }
