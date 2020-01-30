@@ -21,6 +21,8 @@ export class Router {
         this.app = express();
         // Enable CORS headers
         this.app.use(cors());
+        // Enable forms 
+        this.app.use(express.urlencoded())
         // Enable default handler
         this.app.use((req: any, res: any, next: any) => {
             this.default(req, res, next);
@@ -29,6 +31,23 @@ export class Router {
         // Add aggregates endpoint
         this.app.get(`${config.api.base_endpoint}/aggregates`, (req: any, res: any) => {
             this.aggregates(req, res);
+        })
+
+        // Add uplink endpoint
+        this.app.post(`${config.api.base_endpoint}/uplink`, (req: any, res: any) => {
+            if (req.headers.authorization != undefined) {
+                if (config.authentication.tokens.indexOf(req.headers.authorization) > -1) {
+                    res.sendStatus(200)
+                }else {
+                    this.logger.verbose("API Act Response (401): Invalid authentication token")
+                    res.status(401)
+                    res.json({"error": "Invalid token"})
+                }
+            }else {
+                this.logger.verbose("API Act Response (401): No authentication token")
+                res.status(401)
+                res.json({"error": "No auth header"})
+            }
         })
 
         // Start API
