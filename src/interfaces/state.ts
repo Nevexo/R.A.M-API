@@ -6,6 +6,6 @@ export interface State {
     task: string,
     mode: string,
     vehicle: string,
-    path: {"city": string, "company": string},
+    path: string,
     control_mode: string
 }
