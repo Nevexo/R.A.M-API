@@ -2,13 +2,11 @@
 // A TypeScript based caching API for R.A.M, the ETS2 self-driving vehicle.
 
 import { Router }   from "./modules/router";
-import { Uplink }   from "./modules/uplink";
-import { Response } from './modules/response';
 import { State }    from './interfaces/state';
 import Winston from 'winston';
 
 const logger = Winston.createLogger({
-    level: 'info',
+    level: 'debug',
     format: Winston.format.json(),
     transports: [
       //
