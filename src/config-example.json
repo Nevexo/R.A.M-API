@@ -1,0 +1,13 @@
+{
+    "api": {
+        "port": 3000,
+        "base_endpoint": "/api",
+        "endpoints": {
+            "uplink": "/uplink",
+            "aggregates": "/aggregates"
+        }
+    },
+    "authentication": {
+        "tokens": [""]
+    }
+}

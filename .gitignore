@@ -105,3 +105,6 @@ dist
 
 # Ignore 'compiled' JavaScript files.
 *.js
+
+# Ignore configuration file
+config.json
