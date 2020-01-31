@@ -11,10 +11,13 @@ export class Router {
     app: any;
     logger: any;
     data: any;
+    uplink: any;
 
     constructor(logger: any, data: any) {
         // Setup database interface
         this.data = data
+        // Setup uplink module
+        this.uplink = new Uplink(logger, this.data)
         // Setup logger
         this.logger = logger;
         // Setup handlers instance
@@ -22,7 +25,7 @@ export class Router {
         // Enable CORS headers
         this.app.use(cors());
         // Enable forms 
-        this.app.use(express.urlencoded())
+        this.app.use(express.urlencoded({extended: true}))
         // Enable default handler
         this.app.use((req: any, res: any, next: any) => {
             this.default(req, res, next);
@@ -37,7 +40,15 @@ export class Router {
         this.app.post(`${config.api.base_endpoint}/uplink`, (req: any, res: any) => {
             if (req.headers.authorization != undefined) {
                 if (config.authentication.tokens.indexOf(req.headers.authorization) > -1) {
-                    res.sendStatus(200)
+                    this.uplink.uplinkRequest(req.body, (status: any) => {
+                        if (status) {
+                            this.logger.verbose("API Act Response (204): Updated everything.")
+                            res.sendStatus(204)
+                        }else {
+                            res.status(500)
+                            res.json({"error": status})
+                        }
+                    })
                 }else {
                     this.logger.verbose("API Act Response (401): Invalid authentication token")
                     res.status(401)

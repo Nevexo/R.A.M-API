@@ -2,7 +2,7 @@
 // Database system
 
 // TODO: Replace this with MongoDB
-import { State }    from '../interfaces/state';
+import { State } from '../interfaces/state';
 
 
 export class Data {
@@ -12,12 +12,18 @@ export class Data {
     constructor (logger: any) {
         this.logger = logger
         // Setup default data payload
+        const date = new Date().toISOString()
         this.data = {
-            "task": "Unknown",
-            "mode": "Unknown",
-            "vehicle": "Unknown",
-            "path": "Unknown",
-            "control_mode": "Unknown"
+            "ram_online": true,
+            "ram_location": "Calais",
+            "ram_parameters": {
+                "task": {"data": "Unknown", "last_changed": date},
+                "mode": {"data": "Unknown", "last_changed": date},
+                "vehicle": {"data": "Unknown", "last_changed": date},
+                "path": {"data": "Unknown", "last_changed": date},
+                "control_mode": {"data": "Unknown", "last_changed": date}
+            },
+            "last_uplink_time": "2020-01-30T21:52:16+0000"
         }
     }
 

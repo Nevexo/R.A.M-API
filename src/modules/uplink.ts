@@ -1,6 +1,8 @@
 // R.A.M API
 // Data uplink handler
 
+import { State } from '../interfaces/state';
+
 export class Uplink {
     // This class handles data uplinking from R.A.M
     logger: any;
@@ -11,24 +13,32 @@ export class Uplink {
         this.data = data;
     }
 
-    createFullObject(changes: any) {
+    // TODO: Remove callback!!!
+    createFullObject(changes: any, callback: any) {
         // Takes the uploaded object and adds them to the main data
         // Temporary until mongodb is implemented
         let data = this.data.get(); // Get current object
-        for (let property in data) {
-            if (data['ram_parameters'].hasOwnProperty(property)) {
-                if (changes[property] != undefined) {
-                    // A change has been made to this property
-                    data['ram_parameters'][property]['data'] = changes[property]
-                    // Update date/time
-                    data['ram_parameters'][property]['last_changed'] = new Date().toISOString()
-                } 
+        const properties = Object.keys(data['ram_parameters'])
+        for (let property in properties) {
+            property = properties[property]
+            if (changes.hasOwnProperty(property)) {
+                data['ram_parameters'][property]['data'] = changes[property]
+                data['ram_parameters'][property]['last_changed'] = new Date().toISOString()
             }
         }
-        return data
+        callback(data)
     }
-
-    uplinkRequest(form: any) {
-        
+    // TODO: Remove callback!!!
+    public uplinkRequest(form: any, callback: any) {
+        this.createFullObject(form, (new_data: any) => {
+            console.dir(new_data)
+            if (new_data == this.data.get()) {
+                callback("No new data.")
+            }else {
+                new_data['last_uplink_time'] = new Date().toISOString()
+                this.data.set(new_data)
+                callback(true)
+            }
+        });
     }
 }
