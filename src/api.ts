@@ -4,6 +4,7 @@
 import { Router } from "./modules/router";
 import { State }  from './interfaces/state';
 import { Data }   from './modules/data';  
+import { TruckyApp } from './modules/truckyapp';
 import Winston from 'winston';
 
 const logger = Winston.createLogger({
@@ -24,3 +25,4 @@ logger.info("Initalizing...")
 
 let data = new Data(logger);
 const router = new Router(logger, data);
+const trucky = new TruckyApp(logger, data);

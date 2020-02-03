@@ -14,8 +14,9 @@ export class Data {
         // Setup default data payload
         const date = new Date().toISOString()
         this.data = {
-            "ram_online": true,
-            "ram_location": "Calais",
+            "ram_online": false,
+            "ram_location": "",
+            "ram_server": "",
             "ram_parameters": {
                 "task": {"data": "Unknown", "last_changed": date},
                 "mode": {"data": "Unknown", "last_changed": date},

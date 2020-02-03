@@ -9,5 +9,9 @@
     },
     "authentication": {
         "tokens": [""]
+    },
+    "truckyapp": {
+        "base_url": "https://api.truckyapp.com/v3/map/online",
+        "ram_player_id": ""
     }
 }
