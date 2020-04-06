@@ -22,7 +22,8 @@ export class Data {
                 "mode": {"data": "Unknown", "last_changed": date},
                 "vehicle": {"data": "Unknown", "last_changed": date},
                 "path": {"data": "Unknown", "last_changed": date},
-                "control_mode": {"data": "Unknown", "last_changed": date}
+                "control_mode": {"data": "Unknown", "last_changed": date},
+                "vehicle_damage": {"data": "Unknown", "last_changed": date}
             },
             "last_uplink_time": "2020-01-30T21:52:16+0000"
         }
