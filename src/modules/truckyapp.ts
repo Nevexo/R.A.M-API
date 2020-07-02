@@ -35,10 +35,12 @@ export class TruckyApp {
                         data['ram_location'] = `${cache['response']['location']['poi']['realName']}`
                          + ` (${cache['response']['location']['poi']['country']})`
                         data['ram_server'] = cache['response']['serverDetails']['name']
+                        data['ram_pid'] = cache['response']['p_id']
                     }else {
                         data['ram_online'] = false
                         data['ram_location'] = ""
                         data['ram_server'] = ""
+                        data['ram_pid'] = 0
                     }
                     // Write to database
                     this.logger.debug("Truckyapp update complete, writing to DB.")
