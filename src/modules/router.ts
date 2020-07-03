@@ -36,6 +36,17 @@ export class Router {
             this.aggregates(req, res);
         })
 
+        // Add force online endpoint
+        this.app.post(`${config.api.base_endpoint}/online`, (req: any, res: any) => {
+            this.data.force_online(true)
+            res.json({"message": "Enabled 'force-online' parameter. Send DELETE to disable."})
+        })
+
+        this.app.delete(`${config.api.base_endpoint}/online`, (req: any, res: any) => {
+            this.data.force_online(false)
+            res.json({"message": "Disabled 'force-online' parameter. Send POST to enable."})
+        })
+
         // Add uplink endpoint
         this.app.post(`${config.api.base_endpoint}/uplink`, (req: any, res: any) => {
             if (req.headers.authorization != undefined) {
@@ -80,7 +91,7 @@ export class Router {
     }
 
     aggregates(req: any, res: any) {
-        const current_data = this.data.get()
+        const current_data = this.data.get_safe()
         res.json(current_data)
     }
 }
