@@ -37,14 +37,12 @@ export class Data {
     }
 
     public get() {
-        console.log("get")
         return this.data
     }
 
     public get_safe() {
         // To stop data overriding, the API should use this function
-        console.log("get safe")
-        let i = this.data;
+        let i = Object.assign({}, this.data)
         if (this.always_online) {
             i['ram_online'] = true
             if (i['ram_pid'] == 0) {
