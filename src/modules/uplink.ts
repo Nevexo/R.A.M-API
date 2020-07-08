@@ -35,7 +35,6 @@ export class Uplink {
             if (new_data == this.data.get()) {
                 callback("No new data.")
             }else {
-                new_data['last_uplink_time'] = new Date().toISOString()
                 this.data.set(new_data)
                 callback(true)
             }

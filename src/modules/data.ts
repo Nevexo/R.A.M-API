@@ -33,6 +33,7 @@ export class Data {
 
     public set(data: State) {
         this.data = data
+        this.data['last_uplink_time'] = new Date().toISOString()
         this.logger.debug("Database updated.")
     }
 
